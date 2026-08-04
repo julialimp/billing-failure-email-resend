@@ -1,3 +1,0 @@
-Invoice: INV-12345
-Amount: $129.00
-Status: Credit card declined

@@ -1,6 +1,6 @@
 import { Body, Container, Heading, Html, Text } from "@react-email/components";
 
-export function BillingFailureEmail({ name }: { name: string }) {
+export function BillingFailureEmail({ name, invoice, amount }: { name: string, invoice: string, amount: number }) {
   return (
     <Html>
         <Body>

@@ -9,7 +9,7 @@ export async function GET() {
   const invoicePath = path.join(
     process.cwd(),
     "attachments",
-    "test-attachment.txt",
+    "Invoice-resend.pdf",
   );
 
   const invoiceBuffer = fs.readFileSync(invoicePath);
@@ -18,10 +18,10 @@ export async function GET() {
     from: "Acme <onboarding@resend.dev>",
     to: ["julia.limp@hotmail.com"],
     subject: "Payment failed",
-    react: BillingFailureEmail({ name: "Julia" }),
+    react: BillingFailureEmail({ name: "Julia", invoice: "INV-123", amount: 100 }),
     attachments: [
       {
-        filename: "test-attachment.txt",
+        filename: "Invoice-resend.pdf",
         content: invoiceBuffer,
       },
     ],

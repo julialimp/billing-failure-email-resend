@@ -15,10 +15,10 @@ export function BillingFailureEmail({
   return (
     <Html>
       <Body>
-        <Container>
+        <Container style={{backgroundColor: "#f9f9f9" }}>
           <EmailHeader />
           <Heading style={{ textAlign: "center", fontSize: 20 }}>
-            Payment Failed
+            Action Required: Payment Failed
           </Heading>
           <Text>Hello {name},</Text>
           <Text>
@@ -26,13 +26,25 @@ export function BillingFailureEmail({
             interruption to your service, please update your payment method.
           </Text>
 
-          <Section style={{ marginTop: 2, marginBottom: 10, padding: 5, border: "1px solid #e5e7eb", borderRadius: 8 }}>
+          <Section
+            style={{
+              marginTop: 2,
+              marginBottom: 10,
+              padding: 5,
+              border: "1px solid #e5e7eb",
+              borderRadius: 8,
+            }}
+          >
             <Heading style={{ fontSize: 14, fontWeight: 600 }}>
               Invoice Summary
             </Heading>
-            <Text style={{ margin: 0, padding: 0 }}>Invoice Number: {invoice}</Text>
+            <Text style={{ margin: 0, padding: 0 }}>
+              Invoice Number: {invoice}
+            </Text>
             <Text style={{ margin: 0, padding: 0 }}>Amount Due: ${amount}</Text>
-            <Text style={{ margin: 0, padding: 0 }}>Status: Payment Failed</Text>
+            <Text style={{ margin: 0, padding: 0 }}>
+              Status: Payment Failed
+            </Text>
           </Section>
 
           <Button
@@ -60,6 +72,15 @@ export function BillingFailureEmail({
             Need help?{" "}
             <Link href="https://example.com/contact-support">
               Contact Support
+            </Link>
+          </Text>
+          <Text style={{fontWeight: 600, fontStyle: "italic"}}>
+            Note:{" "}
+            <span style={{fontWeight: 400}}>
+                This billing failure email was created as part of the Customer Success Engineer take-home challenge. You can view the complete Next.js + React Email implementation on {" "}
+            </span>    
+            <Link href="https://github.com/julialimp/billing-failure-email-resend">
+              Github Repo
             </Link>
           </Text>
 

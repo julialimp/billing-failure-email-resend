@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { BillingFailureEmail } from "@/emails/BillingFailure";
+import { BillingFailureEmail } from "@/emails/BillingFailureEmail";
 import fs from "fs";
 import path from "path";
 
@@ -9,19 +9,19 @@ export async function GET() {
   const invoicePath = path.join(
     process.cwd(),
     "attachments",
-    "Invoice-resend.pdf",
+    "invoice.pdf",
   );
 
   const invoiceBuffer = fs.readFileSync(invoicePath);
 
   const { data, error } = await resend.emails.send({
-    from: "Acme <onboarding@resend.dev>",
+    from: "Acme Billing <onboarding@resend.dev>",
     to: ["julia.limp@hotmail.com"],
-    subject: "Payment failed",
+    subject: "Action Required: Payment failed",
     react: BillingFailureEmail({ name: "Julia", invoice: "INV-123", amount: 100 }),
     attachments: [
       {
-        filename: "Invoice-resend.pdf",
+        filename: "invoice.pdf",
         content: invoiceBuffer,
       },
     ],
@@ -31,6 +31,6 @@ export async function GET() {
     console.error("Error sending email:", error);
     return new Response("Error sending email", { status: 500 });
   }
-
+  console.log(data);
   return new Response("Email sent successfully", { status: 200 });
 }

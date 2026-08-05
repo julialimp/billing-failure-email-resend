@@ -15,8 +15,9 @@ export function BillingFailureEmail({
   return (
     <Html>
       <Body>
-        <Container style={{backgroundColor: "#f9f9f9" }}>
+        <Container style={{ backgroundColor: "#f9f9f9" }}>
           <EmailHeader />
+
           <Heading style={{ textAlign: "center", fontSize: 20 }}>
             Action Required: Payment Failed
           </Heading>
@@ -74,14 +75,21 @@ export function BillingFailureEmail({
               Contact Support
             </Link>
           </Text>
-          <Text style={{fontWeight: 600, fontStyle: "italic"}}>
+          <Text style={{ fontWeight: 600, fontStyle: "italic" }}>
             Note:{" "}
-            <span style={{fontWeight: 400}}>
-                This billing failure email was created as part of the Customer Success Engineer take-home challenge. You can view the complete Next.js + React Email implementation on {" "}
-            </span>    
+            <span style={{ fontWeight: 400 }}>
+              This billing failure email was created as part of the Customer
+              Success Engineer take-home challenge. You can view the complete
+              Next.js + React Email implementation on{" "}
+            </span>
             <Link href="https://github.com/julialimp/billing-failure-email-resend">
               Github Repo
             </Link>
+          </Text>
+          <Text>
+            For a detailed overview of the take-home process, ideation, and
+            execution, check out this{" "}
+            <Link href="https://www.loom.com/share/d32b43ab8502487ca5a7335e9c647407">Loom video</Link>
           </Text>
 
           <EmailFooter />

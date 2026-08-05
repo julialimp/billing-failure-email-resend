@@ -2,78 +2,18 @@
 The following section covers the customer support scenarios provided in the take-home challenge.
 
 ## Ticket Analysis
-| Ticket | Message | Label | Priority | Priority Reason | Response | Internal Notes |
-| ------ | ------- | ----- | -------- | -------- | -------- | -------------- |
-| RES-2984 | How do i create an email? | Question | 6 | Doesn't block an existing integration and can be resolved through documentation. | [Response #2984](#res-2984) | Share the getting started documentation and a basic example. Confirm whether they're trying to create an email template or send emails via the API |
-| RES-1927 | I’m not sure how to add the TXT record at Vercel. Can you tell me how? | Question | 7 | Low-impact setup question with documented solution. | [Response #1927](#res-1927) | Explain how to add the TXT record in Vercel DNS. Share the domain verification documentation |
-| RES-5842 | I need to be able to receive emails from Resend. How do I do that? | Question | 5 | Product question that is blocking implementation but not an incident | [Response #5842](#res-5842) | Clarify what they mean by "receive emails from Resend." Explain the required setup and share the relevant documentation |
-| RES-7921 | My emails suddenly stopped sending last night for 4 hours and thousands of magic links didn’t send. What happened? This is unacceptable. | Incident | 1 | Production outage affecting thousands of authentication emails. Highest customer impact. Client frustrated | [Response #7921](#res-7921) | Gather more context from the customer. Ask for the approximate timestamp so we can check our logs. Request any message/request IDs if available. Check the statuspage for any incidents or maintenance. Escalate to Engineering |
-| RES-3485 | When I send a request to trigger a notification, I get an error message in the system. The user does not receive the email, and the system displays an error message: ”Too many requests. You can only make 2 requests per second. See rate limit response headers for more information. Or contact support to increase rate limit.” | Troubleshooting | 2 | Production issue preventing emails from being sent due to rate limiting. Requires troubleshooting |  [Response #3485](#res-3485) | Confirm the customer is hitting the account's rate limit. Verify the current rate limit and determine whether an increase is appropriate. Check if the customer is consistently exceeding the limit or experiencing unexpected spikes. |
-| RES-2196 | My emails are going to the spam folder at Gmail. What can I do to stop this? | Troubleshooting | 4 | Deliverability issue affecting email effectiveness. Not an outage | [Response #2196](#res-2196) | Review deliverability metrics, domain authentication and sender reputation. Share Gmail best practices and any recommendations to improve deliverability |
-| RES-1348 | I’m seeing a ton of 403 errors on my account. How do I fix that? | Troubleshooting | 3 | Authentication/authorization failures (403) blocking API usage | [Response #1348](#res-1348) | Check the credentials and confirm the API key is still valid and active. Review the logs to see which endpoint is returning the 403 and verify the API key has the required permissions. Inform customer about possible scenarios where this error might occur and provide documentation on how to resolve it |
+| Ticket | Message | Label | Category | Priority | Priority Reason | Response | Internal Notes |
+| ------ | ------- | ------ | ----- | -------- | -------- | -------- | -------------- |
+| RES-7921 | My emails suddenly stopped sending last night for 4 hours and thousands of magic links didn’t send. What happened? This is unacceptable. | Incident | Service Outage | 1 | Production outage affecting thousands of authentication emails. Highest customer impact. Client frustrated | [Response #7921](#res-7921) | Gather more context from the customer. Ask for the approximate timestamp so we can check our logs. Request any message/request IDs if available. Check the statuspage for any incidents or maintenance. Escalate to Engineering |
+| RES-3485 | When I send a request to trigger a notification, I get an error message in the system. The user does not receive the email, and the system displays an error message: ”Too many requests. You can only make 2 requests per second. See rate limit response headers for more information. Or contact support to increase rate limit.” | Troubleshooting | Rate Limit | 2 | Production issue preventing emails from being sent due to rate limiting. Requires troubleshooting |  [Response #3485](#res-3485) | Confirm the customer is hitting the account's rate limit. Verify the current rate limit and determine whether an increase is appropriate. Check if the customer is consistently exceeding the limit or experiencing unexpected spikes. |
+| RES-1348 | I’m seeing a ton of 403 errors on my account. How do I fix that? | Troubleshooting | Authentication | 3 | Authentication/authorization failures (403) blocking API usage | [Response #1348](#res-1348) | Check the credentials and confirm the API key is still valid and active. Review the logs to see which endpoint is returning the 403 and verify the API key has the required permissions. Inform customer about possible scenarios where this error might occur and provide documentation on how to resolve it |
+| RES-2196 | My emails are going to the spam folder at Gmail. What can I do to stop this? | Troubleshooting | Deliverability | 4 | Deliverability issue affecting email effectiveness. Not an outage | [Response #2196](#res-2196) | Review deliverability metrics, domain authentication and sender reputation. Share Gmail best practices and any recommendations to improve deliverability |
+| RES-5842 | I need to be able to receive emails from Resend. How do I do that? | Question | Product Guidance | 5 | Product question that is blocking implementation but not an incident | [Response #5842](#res-5842) | Clarify what they mean by "receive emails from Resend." Explain the required setup and share the relevant documentation |
+| RES-2984 | How do i create an email? | Question | Onboarding | 6 | Doesn't block an existing integration and can be resolved through documentation. | [Response #2984](#res-2984) | Share the getting started documentation and a basic example. Confirm whether they're trying to create an email template or send emails via the API |
+| RES-1927 | I’m not sure how to add the TXT record at Vercel. Can you tell me how? | Question | Domain Setup | 7 | Low-impact setup question with documented solution. | [Response #1927](#res-1927) | Explain how to add the TXT record in Vercel DNS. Share the domain verification documentation |
 
 
 ### Customer responses
-#### RES-2984
-***Issue:** How do i create an email?*
-
-Hello {{user.name}},
-
-My name is Julia and I'd be happy to help you get started.
-
-If you're just getting started with Resend, [this guide](https://resend.com/docs/introduction) walks through everything from verifying your domain to sending your first email.
-
-To make sure I point you to the right resources, could you let me know if you're trying to:
-- create an email template
-- or send emails through the API?
-
-Once I know which one you're working on, I'll be happy to guide you through the next steps.
-
-Kind regards,
-<br>Julia Limp
-
----
-#### RES-1927
-***Issue:** I’m not sure how to add the TXT record at Vercel. Can you tell me how?*
-
-Hello {{user.name}},
-
-Thank you for contacting Resend!
-
-To add the TXT record, open your Vercel project and navigate to Settings > Domains. From there, add the TXT record generated by Resend for your domain. Once you've added the DNS record, return to the Resend dashboard to verify the domain.
-
-Since you're using Vercel, the guide below walks through the process step by step:
-- Add a new DNS record.
-- Select **TXT** as the record type.
-- Copy the value provided by Resend.
-- Save the record and wait for DNS propagation.
-- Return to Resend and verify the domain.
-
-You can find the complete walkthrough here: [Add TXT SPF Record](https://resend.com/docs/knowledge-base/vercel#add-txt-spf-record)
-
-If you have any questions or run into any issues during the setup, just let me know and I'll be happy to help.
-
-Kind regards,
-<br>Julia Limp
-
----
-#### RES-5842
-***Issue:** I need to be able to receive emails from Resend. How do I do that?*
-
-Hello {{user.name}},
-
-Thanks for reaching out to Resend!
-
-Could you please clarify what you mean when you say you need to receive emails from Resend?
-
-If you're referring to receiving inbound emails, Resend supports receiving emails through either a Resend-managed domain or your own [custom domain](https://resend.com/docs/dashboard/receiving/custom-domains). In both cases, you would need to configure a webhook, as any email sent to your receiving domain will be received by Resend and forwarded to your webhook.
-
-I've included our [Receiving Emails](https://resend.com/docs/dashboard/receiving/introduction) documentation as well for more details. If you have any questions while setting this up, just let me know and I'll be happy to help.
-
-Kind regards,
-<br>Julia Limp
-
----
 #### RES-7921
 ***Issue:** My emails suddenly stopped sending last night for 4 hours and thousands of magic links didn’t send. What happened? This is unacceptable.*
 
@@ -119,29 +59,6 @@ Kind regards,
 <br>Julia Limp
 
 ---
-
-#### RES-2196
-***Issue:** My emails are going to the spam folder at Gmail. What can I do to stop this?*
-
-Hello {{user.name}},
-
-I'm sorry to hear your emails are going to the spam folder. To avoid this from happening again, you can follow some troubleshooting steps such as:
-- Check your authentication records to make sure your domain has everything properly configured
-- Use [Deliverability Insights](https://resend.com/docs/dashboard/emails/deliverability-insights) to run a set of best-practice checks and flag any issues
-- Check spam banner - Gmail provides a banner explaining why the email was sent to the spam folder
-- Review your domain's reputation and recent sending activity
-
-To verify the complete troubleshooting steps, please visit
-[Why Are My Emails Going to Spam?](https://resend.com/docs/knowledge-base/why-are-my-emails-going-to-spam) and let me know if you need any help along the process.
-
-You can also check [How to avoid Gmail's spam folder](https://resend.com/docs/knowledge-base/how-do-i-avoid-gmails-spam-folder#how-to-avoid-gmails-spam-folder) to improve inbox placement.
-
-Let me know if you need any assistance on this. I'll be happy to help!
-
-Kind regards,
-<br>Julia Limp
-
----
 #### RES-1348
 ***Issue:** I’m seeing a ton of 403 errors on my account. How do I fix that?*
 
@@ -168,6 +85,88 @@ Kind regards,
 <br>Julia Limp
 
 ---
+#### RES-2196
+***Issue:** My emails are going to the spam folder at Gmail. What can I do to stop this?*
+
+Hello {{user.name}},
+
+I'm sorry to hear your emails are going to the spam folder. To avoid this from happening again, you can follow some troubleshooting steps such as:
+- Check your authentication records to make sure your domain has everything properly configured
+- Use [Deliverability Insights](https://resend.com/docs/dashboard/emails/deliverability-insights) to run a set of best-practice checks and flag any issues
+- Check spam banner - Gmail provides a banner explaining why the email was sent to the spam folder
+- Review your domain's reputation and recent sending activity
+
+To verify the complete troubleshooting steps, please visit
+[Why Are My Emails Going to Spam?](https://resend.com/docs/knowledge-base/why-are-my-emails-going-to-spam) and let me know if you need any help along the process.
+
+You can also check [How to avoid Gmail's spam folder](https://resend.com/docs/knowledge-base/how-do-i-avoid-gmails-spam-folder#how-to-avoid-gmails-spam-folder) to improve inbox placement.
+
+Let me know if you need any assistance on this. I'll be happy to help!
+
+Kind regards,
+<br>Julia Limp
+
+---
+#### RES-5842
+***Issue:** I need to be able to receive emails from Resend. How do I do that?*
+
+Hello {{user.name}},
+
+Thanks for reaching out to Resend!
+
+Could you please clarify what you mean when you say you need to receive emails from Resend?
+
+If you're referring to receiving inbound emails, Resend supports receiving emails through either a Resend-managed domain or your own [custom domain](https://resend.com/docs/dashboard/receiving/custom-domains). In both cases, you would need to configure a webhook, as any email sent to your receiving domain will be received by Resend and forwarded to your webhook.
+
+I've included our [Receiving Emails](https://resend.com/docs/dashboard/receiving/introduction) documentation as well for more details. If you have any questions while setting this up, just let me know and I'll be happy to help.
+
+Kind regards,
+<br>Julia Limp
+
+---
+#### RES-2984
+***Issue:** How do i create an email?*
+
+Hello {{user.name}},
+
+My name is Julia and I'd be happy to help you get started.
+
+If you're just getting started with Resend, [this guide](https://resend.com/docs/introduction) walks through everything from verifying your domain to sending your first email.
+
+To make sure I point you to the right resources, could you let me know if you're trying to:
+- create an email template
+- or send emails through the API?
+
+Once I know which one you're working on, I'll be happy to guide you through the next steps.
+
+Kind regards,
+<br>Julia Limp
+
+---
+#### RES-1927
+***Issue:** I’m not sure how to add the TXT record at Vercel. Can you tell me how?*
+
+Hello {{user.name}},
+
+Thank you for contacting Resend!
+
+To add the TXT record, open your Vercel project and navigate to Settings > Domains. From there, add the TXT record generated by Resend for your domain. Once you've added the DNS record, return to the Resend dashboard to verify the domain.
+
+Since you're using Vercel, the guide below walks through the process step by step:
+- Add a new DNS record.
+- Select **TXT** as the record type.
+- Copy the value provided by Resend.
+- Save the record and wait for DNS propagation.
+- Return to Resend and verify the domain.
+
+You can find the complete walkthrough here: [Add TXT SPF Record](https://resend.com/docs/knowledge-base/vercel#add-txt-spf-record)
+
+If you have any questions or run into any issues during the setup, just let me know and I'll be happy to help.
+
+Kind regards,
+<br>Julia Limp
+
+---
 # Escalation Message
 ## Subject - Possible bug: Intermittent failure sending transactional emails
 
@@ -176,19 +175,20 @@ Customer reported that transactional emails (magic links) stopped sending for ap
 
 Initial review shows no recent changes to the customer's API key, verified domains, or account configuration, suggesting the issue may not be account-specific.
 
-After investigating the issue, I was not able to identify a root cause
+### Expected Behavior
+Transactional emails should be accepted and processed consistently without interruption.
+
+### Actual Behavior
+Emails stopped sending intermittently for approximately four hours, preventing thousands of authentication emails from being delivered.
+
+### Investigation performed
+After investigating the issue, I was not able to identify a root cause:
 - Reviewed the request logs provided by the customer and confirmed a spike in failed send requests between approximately 01:00 and 05:00 UTC
 - Checked statuspage and confirmed there was no scheduled maintenance
 - Verified the API key used in the requests was valid and active
 - Confirmed the sending domain was verified and there were no recent DNS or account configuration changes.
 - Compared requests before and after the affected timeframe. Requests were successful outside of the incident window without any customer intervention
 - I was unable to identify a customer configuration issue, so escalating for further investigation
-
-### Expected Behavior
-Transactional emails should be accepted and processed consistently without interruption.
-
-### Actual Behavior
-Emails stopped sending intermittently for approximately four hours, preventing thousands of authentication emails from being delivered.
 
 ### Business Impact
 Issue affecting the customer's production environment and authentication flows. Customer relies on these transactional emails with magic links for users' authentication. Emails not being sent prevent users from accessing their accounts.

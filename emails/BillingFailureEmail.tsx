@@ -86,9 +86,9 @@ export function BillingFailureEmail({
               Github Repo
             </Link>
           </Text>
-          <Text>
+          <Text style={{ fontStyle: "italic" }}>
             For a detailed overview of the take-home process, ideation, and
-            execution, check out this{" "}
+            execution, check out my{" "}
             <Link href="https://www.loom.com/share/d32b43ab8502487ca5a7335e9c647407">Loom video</Link>
           </Text>
 
